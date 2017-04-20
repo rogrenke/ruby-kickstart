@@ -5,4 +5,13 @@
 # pirates_say_arrrrrrrrr("Pirates say arrrrrrrrr")        # => "arrrrrrrr"
 
 def pirates_say_arrrrrrrrr(string)
+  result_arr = []
+  idx = 0
+  while idx < string.length
+    if string[idx].downcase == "r" && idx != string.length-1
+      result_arr << string[idx+1]
+    end
+    idx += 1
+  end	
+  result_arr.join
 end
