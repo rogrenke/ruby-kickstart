@@ -6,4 +6,7 @@
 # head = {:data => 2, :next => head}
 #
 # print_list_in_reverse head   # >> "1\n2\n"
-
+def print_list_in_reverse(l_list)
+  print_list_in_reverse(l_list[:next]) if l_list[:next]
+  puts l_list[:data]
+end

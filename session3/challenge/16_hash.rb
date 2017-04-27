@@ -15,3 +15,8 @@
 # head = {:data => 6, :next => head}
 # print_list head                    # >> "6\n5\n4\n3\n2\n1\n"
 
+def print_list(l_list)
+  return if l_list == false
+  puts l_list[:data]
+  print_list(l_list[:next]) if l_list[:next]
+end

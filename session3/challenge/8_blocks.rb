@@ -27,13 +27,18 @@
 
 class Person
   attr_accessor :name
+  attr_accessor :age
+  attr_accessor :quote
 
-  def initialize(&initializer)
+  def initialize(hash = Hash.new ,&initializer)
+    @name = hash[:name] if hash[:name] != nil
+    @age = hash[:age] if hash[:age] != nil
+    @quote = hash[:quote] if hash[:quote] != nil
     @initializer = initializer
-    initializer.call self
+    initializer.call self if initializer != nil
   end
 
   def reinit
-    @initializer.call self
+    @initializer.call self if @initializer != nil
   end
 end

@@ -29,6 +29,14 @@
 #   end
 # end
 
-
-def array_init
+def array_init(num=5,&block)
+  arr = []
+  for idx in (0..num-1) do
+    arr << idx
+  end
+  if block != nil
+    arr.map(&block)
+  else
+    arr.map {|item| (item*100).to_s}
+  end
 end

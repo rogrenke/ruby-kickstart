@@ -21,11 +21,40 @@
 # problem_14 2,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => true
 # problem_14 3,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => false
 
-def problem_14
+def problem_14(*para)
+  problem = para.pop[:problem] if para.last.is_a? Hash
+  problem ||= :count_clumps
+  return count_clumps(*para) if problem == :count_clumps
+  return same_ends(*para) if problem == :same_ends
 end
 
-def same_ends
+def same_ends(*para)
+  n = para.shift
+  if n != 0 && para.length == 0
+    return false
+  end
+  beginning = []
+  ending = []
+  for i in (0..n-1) do
+    beginning << para[i]
+    ending << para[para.length-1-i]
+  end
+  ending.reverse!
+  if beginning != ending
+    return false
+  end
+  true
 end
 
-def count_clumps
+def count_clumps(*para)
+  para.flatten!
+  idx = 0
+  counter = 0
+  while idx < para.length
+    if para[idx] == para[idx+1] && para[idx] != para[idx+2]
+      counter += 1
+    end
+    idx += 1
+  end
+  return counter
 end

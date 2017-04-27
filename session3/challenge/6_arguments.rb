@@ -17,3 +17,26 @@
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
 
+def match_maker(setter,*values)
+  result_arr = []
+  if values.length.odd?
+    puts "Wrong number of values"
+    return
+  end
+  values.each_slice(2) do |x,y|
+    if setter == true
+      if !!x == !!y
+        result_arr << false
+      else
+        result_arr << true
+      end
+    else
+      if !!x == !!y
+        result_arr << true
+      else
+        result_arr << false
+      end
+    end
+  end
+  result_arr
+end
